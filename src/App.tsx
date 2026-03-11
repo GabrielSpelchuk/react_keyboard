@@ -4,7 +4,7 @@ interface State {
   pressedKey: string | null;
 }
 
-export class App extends React.Component<State> {
+export class App extends React.Component<{}, State> {
   state: State = { pressedKey: null };
 
   handleKeyUp = (event: KeyboardEvent) => {
@@ -19,7 +19,7 @@ export class App extends React.Component<State> {
     document.removeEventListener('keyup', this.handleKeyUp);
   }
 
-  isPressed() {
+  getDisplayMessage() {
     if (this.state.pressedKey === null) {
       return 'Nothing was pressed yet';
     }
@@ -30,7 +30,7 @@ export class App extends React.Component<State> {
   render() {
     return (
       <div className="App">
-        <p className="App__message">{this.isPressed()}</p>
+        <p className="App__message">{this.getDisplayMessage()}</p>
       </div>
     );
   }
